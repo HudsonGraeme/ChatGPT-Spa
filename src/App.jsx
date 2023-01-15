@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { Box, Text, Link } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const ComponentList = () => {
+  const location = useLocation();
+  const [Component, setComponent] = useState(null);
+  useEffect(() => {
+    if (!location?.pathname) return;
+    const componentName = location.pathname.split("/")[2];
+    import(`./SPAs/${componentName}.jsx`)
+      .then((module) => setComponent(module.default))
+      .catch((err) => console.error(err));
+  }, [location]);
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}
+    <Box>
+      <Text>List of available SPAs:</Text>
+      <Box as="ul">
+        {Object.keys(require.context(".", true, /\.jsx$/).keys()).map(
+          (component, i) => {
+            const componentName = component.split("/")[1];
+            return (
+              <Box as="li" key={i}>
+                <Link to={`/spas/${componentName}`}>{componentName}</Link>
+              </Box>
+            );
+          }
+        )}
+      </Box>
+      {Component && <Component />}
+    </Box>
+  );
+};
 
-export default App
+export default ComponentList;

@@ -1,5 +1,7 @@
 # [ChatGPT SPA]
 
+:warning: Work in progress!
+
 Welcome to the ChatGPT SPA repo. This is a single repository of a bunch of cool **S**ingle **P**age **A**pplications built entirely using [ChatGPT]
 
 ## Table of SPAs
