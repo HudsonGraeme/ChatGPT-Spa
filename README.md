@@ -5,8 +5,8 @@ Welcome to the ChatGPT SPA repo. This is a single repository of a bunch of cool 
 ## Table of SPAs
 
 | Name | Description | Link |
-| :-: | :-- | :-: |
-| | |
+| :--: | :---------- | :--: |
+|      |             |
 
-[ChatGPT]: chat.openai.com "ChatGPT is an online artificial intelligence service"
-[ChatGPT SPA]: chatgpt-spa.github.io
+[chatgpt]: https://chat.openai.com "ChatGPT is an online artificial intelligence service"
+[chatgpt spa]: https://chatgpt-spa.github.io
